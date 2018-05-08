@@ -3,11 +3,6 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: backend
-  # contiv related stuff
-  labels:
-    io.contiv.tenant: default
-    io.contiv.network: contiv-net
-  # end of contiv related stuff
 spec:
   replicas: 1
   selector:
@@ -17,6 +12,8 @@ spec:
     metadata:
       labels:
         app: backend
+        io.contiv.tenant: default
+        io.contiv.network: contiv-net
     spec:
       containers:
         - name: backend

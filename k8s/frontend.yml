@@ -3,12 +3,6 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: frontend
-  # contiv related stuff
-  labels:
-    io.contiv.tenant: default
-    io.contiv.network: contiv-net
-    k8s-app: frontend
-  # end of contiv related stuff
 spec:
   replicas: 1
   selector:
@@ -18,6 +12,8 @@ spec:
     metadata:
       labels:
         app: frontend
+        io.contiv.tenant: default
+        io.contiv.network: contiv-net
     spec:
       containers:
         - name: frontend

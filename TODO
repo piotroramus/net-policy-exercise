@@ -4,6 +4,5 @@
 
 * write a script to automatically bring the contiv VMs
 * write a script to create contiv networks/policies etc
-* fix the labels in the ymls
 * test bandwidth policies with big orders
 * write client
