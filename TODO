@@ -1,0 +1,10 @@
+1. push this code to github
+2. generate big orders - in frontend or client? maybe frontend? thee only downside is that the traffic will be smaller
+   if I had a separate service to generate orders then maybe the client would be already slowed down before asking our application
+   I could simply add bandwidth policy on the generating service
+
+3. write a script to automatically bring the contiv VMs
+4. write a script to create convitv networks/policies etc
+5. fix the labels in the ymls
+6. test bandwidth policies with big orders
+7. write client
