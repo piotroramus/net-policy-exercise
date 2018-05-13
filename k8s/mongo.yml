@@ -16,11 +16,11 @@ spec:
         io.contiv.net-group: database
         io.contiv.network: TestNet
     spec:
-        tolerations:
-          - key: node-role.kubernetes.io/master
-            effect: NoSchedule
-        nodeSelector:
-          node-role.kubernetes.io/master: ""
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
       containers:
         - name: mongo
           image: mongo
