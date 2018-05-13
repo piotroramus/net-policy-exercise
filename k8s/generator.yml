@@ -18,6 +18,7 @@ spec:
       containers:
         - name: generator
           image: poramus/json_generator
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5002
 ---
