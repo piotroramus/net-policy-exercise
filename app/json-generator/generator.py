@@ -20,7 +20,7 @@ def read_data_from_file(filename):
 
 def generate(number_of_entries):
     data = dict()
-    for n in xrange(number_of_entries):
+    for n in range(int(number_of_entries)):
         data[n] = "ABC" * 1000
     data_json = json.dumps(data)
     # save_to_file(data_json)
