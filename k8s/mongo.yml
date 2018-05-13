@@ -15,6 +15,11 @@ spec:
         io.contiv.tenant: default
         io.contiv.network: contiv-net
     spec:
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            effect: NoSchedule
+        nodeSelector:
+          node-role.kubernetes.io/master: ""
       containers:
         - name: mongo
           image: mongo
