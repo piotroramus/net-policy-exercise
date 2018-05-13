@@ -12,8 +12,9 @@ spec:
     metadata:
       labels:
         app: frontend
-        io.contiv.tenant: default
-        io.contiv.network: contiv-net
+        io.contiv.tenant: TestTenant
+        io.contiv.net-group: frontend
+        io.contiv.network: TestNet
     spec:
       containers:
         - name: frontend

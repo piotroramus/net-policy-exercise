@@ -12,8 +12,9 @@ spec:
     metadata:
       labels:
         app: mongo
-        io.contiv.tenant: default
-        io.contiv.network: contiv-net
+        io.contiv.tenant: TestTenant
+        io.contiv.net-group: database
+        io.contiv.network: TestNet
     spec:
         tolerations:
           - key: node-role.kubernetes.io/master

@@ -12,8 +12,9 @@ spec:
     metadata:
       labels:
         app: client
-        io.contiv.tenant: default
-        io.contiv.network: contiv-net
+        io.contiv.tenant: TestTenant
+        io.contiv.net-group: client
+        io.contiv.network: TestNet
     spec:
       containers:
         - name: client
