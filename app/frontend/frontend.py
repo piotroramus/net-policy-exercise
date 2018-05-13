@@ -40,7 +40,7 @@ def save_order(order_id, order):
 def get_order_route(order_id):
     order = get_order(order_id)
     if order:
-        return str(order)
+        return json.dumps(order)
     return "Order {} not found".format(order_id)
 
 
