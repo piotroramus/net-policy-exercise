@@ -1,12 +1,15 @@
 * generate big orders - in frontend or client? maybe frontend? thee only downside is that the traffic will be smaller
    if I had a separate service to generate orders then maybe the client would be already slowed down before asking our application
    I could simply add bandwidth policy on the generating service
+    -> it seems to me that running few Flask servers is a heavy think... maybe consider moving generator to frontend?
 
-* write a script to automatically bring the contiv VMs
-* write a script to create contiv networks/policies etc
+* write a script to create contiv networks/policies etc - written basic skeleton, but policies need to be added
 * test bandwidth policies with big orders
-* write client
+* write client - written, but some more auto-load should be added depending on how the testing goes
 
 
-# IDEA show that it is possible to set up independent infrastructure in the same time in the same hosts using multi-tenancy
-# without worrying about interfering network addresses
+* show that it is possible to set up independent infrastructure in the same time in the same hosts using multi-tenancy
+  without worrying about interfering network addresses
+
+
+CONTIV DOES NOT WORK WITH KUBECTL SERVICE hostnames! At least I think it doesn't...
