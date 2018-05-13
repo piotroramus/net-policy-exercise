@@ -6,3 +6,7 @@
 * write a script to create contiv networks/policies etc
 * test bandwidth policies with big orders
 * write client
+
+
+# IDEA show that it is possible to set up independent infrastructure in the same time in the same hosts using multi-tenancy
+# without worrying about interfering network addresses
