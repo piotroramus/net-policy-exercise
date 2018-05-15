@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-config
+  namespace: default
+data:
+  mongo.host: mongo-service
+  mongo.port: 27017
+  backend.host: backend-service
+  backend.port: 5000
+  frontend.host: frontend-service
+  frontend.port: 5001
+  generator.host: generator-service
+  generator.port: 5002
+  request.timeout: 3

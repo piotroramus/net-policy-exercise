@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 import sys
 
@@ -6,14 +7,17 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-# TODO: get it from the env
-backend_hostname = 'backend-service'
-backend_port = 5000
-request_timeout = 2  # seconds
+backend_host = os.environ.get('BACKEND_HOST', 'backend-service')
+backend_port = int(os.environ.get('BACKEND_PORT', 5000))
+request_timeout = int(os.environ.get('REQUEST_TIMEOUT', 3))
+
+print("RUNNING CONFIGURATION: ", file=sys.stderr)
+print("BACKEND: {}:{}".format(backend_host, backend_port), file=sys.stderr)
+print("REQUEST TIMEOUT: {}".format(request_timeout), file=sys.stderr)
 
 
 def get_order(order_id):
-    url = "http://{}:{}/order/{}".format(backend_hostname, backend_port, order_id)
+    url = "http://{}:{}/order/{}".format(backend_host, backend_port, order_id)
     try:
         r = requests.get(url, timeout=request_timeout)
         if r.status_code != 200:
@@ -24,7 +28,7 @@ def get_order(order_id):
 
 
 def save_order(order_id, order):
-    url = "http://{}:{}/order/{}".format(backend_hostname, backend_port, order_id)
+    url = "http://{}:{}/order/{}".format(backend_host, backend_port, order_id)
     try:
         headers = {'Content-type': 'application/json'}
         order = json.dumps(order)

@@ -22,6 +22,17 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
+          env:
+           - name: MONGO_HOST
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: mongo.host
+           - name: MONGO_PORT
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: mongo.port
 ---
 apiVersion: v1
 kind: Service

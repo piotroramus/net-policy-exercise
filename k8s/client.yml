@@ -22,6 +22,32 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5003
+          env:
+           - name: FRONTEND_HOST
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: frontend.host
+           - name: FRONTEND_PORT
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: fronted.port
+           - name: GENERATOR_HOST
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: generator.host
+           - name: GENERATOR_PORT
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: generator.port
+           - name: REQUEST_TIMEOUT
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: request.timeout
 ---
 apiVersion: v1
 kind: Service

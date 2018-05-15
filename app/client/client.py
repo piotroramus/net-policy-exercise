@@ -1,17 +1,24 @@
 import json
+import os
 import requests
+import sys
 import time
 import uuid
 
-generator_hostname = 'generator-service'
-generator_port = 5002
-frontend_hostname = 'frontend-service'
-frontend_port = 5001
-request_timeout = 2  # seconds
+generator_host = os.environ.get('GENERATOR_HOST', 'generator-service')
+generator_port = int(os.environ.get('GENERATOR_PORT', 5002))
+frontend_host = os.environ.get('FRONTEND_HOST', 'frontend-service')
+frontend_port = int(os.environ.get('FRONTEND_PORT', 5001))
+request_timeout = int(os.environ.get('REQUEST_TIMEOUT', 3))
+
+print("RUNNING CONFIGURATION: ", file=sys.stderr)
+print("GENERATOR: {}:{}".format(generator_host, generator_port), file=sys.stderr)
+print("FRONTEND: {}:{}".format(frontend_host, frontend_port), file=sys.stderr)
+print("REQUEST TIMEOUT: {}".format(request_timeout), file=sys.stderr)
 
 
 def request_generated_order(number_of_entries):
-    url = "http://{}:{}/generate/{}".format(generator_hostname, generator_port, number_of_entries)
+    url = "http://{}:{}/generate/{}".format(generator_host, generator_port, number_of_entries)
     try:
         r = requests.get(url, timeout=3)
         if r.status_code != 200:
@@ -22,7 +29,7 @@ def request_generated_order(number_of_entries):
 
 
 def place_order_in_the_system(order_id, order):
-    url = "http://{}:{}/order/{}".format(frontend_hostname, frontend_port, order_id)
+    url = "http://{}:{}/order/{}".format(frontend_host, frontend_port, order_id)
     try:
         headers = {'Content-type': 'application/json'}
         order = json.dumps(order)
@@ -35,7 +42,7 @@ def place_order_in_the_system(order_id, order):
 
 
 def get_order_from_the_system(order_id):
-    url = "http://{}:{}/order/{}".format(frontend_hostname, frontend_port, order_id)
+    url = "http://{}:{}/order/{}".format(frontend_host, frontend_port, order_id)
     try:
         r = requests.get(url, timeout=request_timeout)
         if r.status_code != 200:

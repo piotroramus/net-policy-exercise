@@ -1,14 +1,18 @@
+import os
 import sys
 
 from bson.json_util import dumps
 from flask import Flask, request
 from pymongo import MongoClient
 
-
 app = Flask(__name__)
-# TODO: fix it so it takes it from the env
-mongo_hostname = 'mongo-service'
-client = MongoClient(mongo_hostname, 27017)
+
+mongo_host = os.environ.get('MONGO_HOST', 'mongo-service')
+mongo_port = int(os.environ.get('MONGO_PORT', 27017))
+client = MongoClient(mongo_host, mongo_port)
+
+print("RUNNING CONFIGURATION: ", file=sys.stderr)
+print("MONGO: {}:{}".format(mongo_host, mongo_port), file=sys.stderr)
 
 db = client['orders-db']
 
@@ -31,7 +35,6 @@ def get_order_route(order_id):
     order = get_order(order_id)
     if order:
         return dumps(order)
-        # str(order)
     return "Order {} not found".format(order_id), 404
 
 
