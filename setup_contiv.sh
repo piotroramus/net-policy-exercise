@@ -2,6 +2,8 @@
 
 # that's a hack-script to make the contiv-tutorial work
 
+export BUILD_VERSION=1.1.7
+
 git clone https://github.com/contiv/install.git
 cd install
 
