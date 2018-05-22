@@ -32,7 +32,7 @@ spec:
              valueFrom:
                configMapKeyRef:
                  name: cluster-config
-                 key: fronted.port
+                 key: frontend.port
            - name: GENERATOR_HOST
              valueFrom:
                configMapKeyRef:
