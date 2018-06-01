@@ -13,3 +13,6 @@ data:
   generator.host: "10.1.1.4"
   generator.port: "5002"
   request.timeout: "3"
+  client.order.size: "10"
+  client.iterations: "10"
+  client.iteration.sleep: "0"

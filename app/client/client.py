@@ -10,11 +10,17 @@ generator_port = int(os.environ.get('GENERATOR_PORT', 5002))
 frontend_host = os.environ.get('FRONTEND_HOST', 'frontend-service')
 frontend_port = int(os.environ.get('FRONTEND_PORT', 5001))
 request_timeout = int(os.environ.get('REQUEST_TIMEOUT', 3))
+order_size = int(os.environ.get('ORDER_SIZE', 10))
+iterations = int(os.environ.get('ITERATIONS', 10))
+sleep_between_iterations = int(os.environ.get('ITERATION_SLEEP', 0))
 
 print("RUNNING CONFIGURATION: ", file=sys.stderr)
 print("GENERATOR: {}:{}".format(generator_host, generator_port), file=sys.stderr)
 print("FRONTEND: {}:{}".format(frontend_host, frontend_port), file=sys.stderr)
 print("REQUEST TIMEOUT: {}".format(request_timeout), file=sys.stderr)
+print("ORDER SIZE: {}".format(order_size), file=sys.stderr)
+print("ITERATIONS: {}".format(iterations), file=sys.stderr)
+print("SLEEP BETWEEN ITERATIONS: {}".format(sleep_between_iterations), file=sys.stderr)
 
 
 def request_generated_order(number_of_entries):
@@ -52,9 +58,9 @@ def get_order_from_the_system(order_id):
         return "Cannot connect to system's server..."
 
 
-def run():
-    print("Requesting order from the generator...")
-    generated_order = request_generated_order(10)
+def run(order_size):
+    print("Requesting order of size {} from the generator...".format(order_size))
+    generated_order = request_generated_order(order_size)
     print("Obtained order: {}".format(generated_order))
 
     new_id = uuid.uuid4()
@@ -71,8 +77,15 @@ def run():
     saved_order = get_order_from_the_system(new_id)
     print("Got back order: {}".format(saved_order))
 
-    print("That's all for now, thanks.")
+    print("Iteration finished, sleeping {} seconds...".format(sleep_between_iterations))
+    time.sleep(sleep_between_iterations)
 
 
 if __name__ == '__main__':
-    run()
+    if iterations == 0:
+        # run forever
+        while True:
+            run(order_size)
+    else:
+        for _ in range(iterations):
+            run(order_size)

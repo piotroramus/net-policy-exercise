@@ -48,6 +48,21 @@ spec:
                configMapKeyRef:
                  name: cluster-config
                  key: request.timeout
+           - name: ORDER_SIZE
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: client.order.size
+           - name: ITERATIONS
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: client.iterations
+           - name: ITERATION_SLEEP
+             valueFrom:
+               configMapKeyRef:
+                 name: cluster-config
+                 key: client.iteration.sleep
 ---
 apiVersion: v1
 kind: Service
