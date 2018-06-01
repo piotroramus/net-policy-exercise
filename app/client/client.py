@@ -75,7 +75,7 @@ def run(order_size):
 
     print("Checking results... getting the order back...")
     saved_order = get_order_from_the_system(new_id)
-    print("Got back order: {}".format(saved_order))
+    print("Got back order: {}".format(new_id))
 
     print("Iteration finished, sleeping {} seconds...".format(sleep_between_iterations))
     time.sleep(sleep_between_iterations)
