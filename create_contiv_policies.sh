@@ -12,8 +12,8 @@ netctl policy create -t TestTenant otherPolicy
 
 netctl netprofile create -t TestTenant -b 100Kbps -d 6 -s 80 testProfile
 
-netctl group create -t TestTenant -n testProfile - p clientPolicy TestNet client
+netctl group create -t TestTenant -n testProfile -p clientPolicy TestNet client
 netctl group create -t TestTenant -n testProfile -p frontendPolicy TestNet frontend
-netctl group create -t TestTenant TestNet -p backendPolicy backend
-netctl group create -t TestTenant TestNet -p dbPolicy database
-netctl group create -t TestTenant TestNet -p otherPolicy other
+netctl group create -t TestTenant -p backendPolicy TestNet backend
+netctl group create -t TestTenant -p dbPolicy TestNet database
+netctl group create -t TestTenant -p otherPolicy TestNet other
