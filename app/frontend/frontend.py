@@ -16,6 +16,11 @@ print("BACKEND: {}:{}".format(backend_host, backend_port), file=sys.stderr)
 print("REQUEST TIMEOUT: {}".format(request_timeout), file=sys.stderr)
 
 
+@app.route("/health", methods=['GET'])
+def health():
+    return "OK"
+
+
 def get_order(order_id):
     url = "http://{}:{}/order/{}".format(backend_host, backend_port, order_id)
     try:

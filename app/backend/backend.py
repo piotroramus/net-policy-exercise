@@ -17,6 +17,11 @@ print("MONGO: {}:{}".format(mongo_host, mongo_port), file=sys.stderr)
 db = client['orders-db']
 
 
+@app.route("/health", methods=['GET'])
+def health():
+    return "OK"
+
+
 def save_order(order_id, order):
     orders = db['order']
     order['orderId'] = order_id
